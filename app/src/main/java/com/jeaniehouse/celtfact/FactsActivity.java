@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.Random;
 
 
 public class FactsActivity extends Activity {
@@ -12,6 +17,39 @@ public class FactsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facts);
+
+        // Declare view variables
+        final TextView factLabel = (TextView) findViewById(R.id.factTextView);
+        Button showFactButton = (Button) findViewById(R.id.showFactButton);
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String[] facts = {
+                        "Triskelion",
+                        "Triquetra",
+                        "Arwen",
+                        "Triple Spiral",
+                        "Five-Fold",
+                        "Single Spiral",
+                        "ThreeFold",
+                        "Double Spiral",
+                        "Crosses"
+
+                };
+                String fact = "";
+                //Randomly select
+                Random randomGenerator = new Random();
+                int randomNumber = randomGenerator.nextInt(facts.length);
+
+               fact = facts[randomNumber];
+
+                //Update label
+                factLabel.setText(fact);
+
+            }
+        };
+        showFactButton.setOnClickListener(listener);
     }
 
     @Override
